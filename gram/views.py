@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .forms import NewsLetterForm
 # Create your views here.
 def welcome(request):
