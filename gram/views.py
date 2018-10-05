@@ -1,6 +1,9 @@
-from django.shortcuts import render
-from django.http  import HttpResponse,Http404
-
+from django.shortcuts import render,redirect
 # Create your views here.
 def welcome(request):
-    return render(request, 'welcome.html')
+   return render(request, 'all-gram/today-gram.html')
+
+def gram(request):
+   gram = Image.objects.all()
+
+   return render(request, 'all-gram/today-gram.html', {"gram":gram})
