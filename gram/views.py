@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 # Create your views here.
 def welcome(request):
-   return render(request, 'all-gram/today-gram.html')
+   return render(request, 'welcome.html')
 
-def gram(request):
-   gram = Image.objects.all()
+# def gram(request):
+#    gram = Image.objects.all()
 
-   return render(request, 'all-gram/today-gram.html', {"gram":gram})
+#    return render(request, 'all-gram/today-gram.html', {"gram":gram})
