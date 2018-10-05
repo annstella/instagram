@@ -6,13 +6,14 @@
   <meta charset="utf-8">
 
   {% if title %}
-  <title>instagram - {{title}}</title>
+  <title>Instagram - {{title}}</title>
   {% else %}
-    <title> instagram </title>
+    <title> Instagram </title>
   {% endif %}
 
   {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/basenews.css' %}">
   {% endblock %}
 
 </head>
