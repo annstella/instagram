@@ -36,3 +36,19 @@ class Image(models.Model):
    likes = models.PositiveIntegerField(default=0)
    comment = models.CharField(max_length=200)
    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+def save_images(self):
+    self.save()
+
+def total_likes(self):
+    return self.likes.count()
+
+def save_comment(self):
+    self.save()
+
+
+class Follow(models.Model):
+   follower = models.ManyToManyField(User)
+   current_user = models.ForeignKey(User, related_name='owner', null=True)
+
+   
