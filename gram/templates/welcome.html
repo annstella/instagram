@@ -1,4 +1,28 @@
 {% extends 'all-gram/base.html' %}
 {% block content %}
-<h1 style="text-align:center;"> WELCOME TO INSTAGRAM!!!</h1>
+{{ block.super }}
+
+<div class="container">
+    <div class="row">
+
+        <!-- empty div -->
+        <div class="col-md-2"></div>
+
+
+        <div class="col-md-7">
+            {% if images %}
+            {% for image in images %}
+                <div class="col-md-7">
+                    <img width="100%" height='auto'  src="{{ image.image.url }}" alt="">
+                </div>
+            {% endfor %}
+            {% else %}
+                <h1 style="text-align:center;"> WELCOME TO INSTAGRAM!!!</h1>
+            {% endif %}
+
+        </div>
+        <!-- side  bar div -->
+        <div class="col-md-3"></div>
+    </div>
+</div>
 {% endblock %}
