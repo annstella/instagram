@@ -48,7 +48,7 @@ Annstella Kagai
 
 #### License
 
-This project is licensed under the MIT License
+MIT LICENSE (c) 2018,Annstella kagai
 
 #### Acknowledgments
 Inspiration
