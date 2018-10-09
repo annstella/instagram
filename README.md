@@ -40,7 +40,7 @@ Link to a live site:
 
 
 #### Known bugs
-* The functiion for the likes does not work,but I wil work on it later..
+* The function for the likes does not work,but I wil work on it later..
 
 #### Authors
 
