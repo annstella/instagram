@@ -1,4 +1,4 @@
-{% extends 'all-gram/base.html' %}
+{% extends 'all-gram/base.html' %} {{form.media}}
 {% block content %}
 {{ block.super }}
 
@@ -10,15 +10,13 @@
 
 
         <div class="col-md-7">
-            {% if images %}
+          
             {% for image in images %}
                 <div class="col-md-7">
-                    <img width="100%" height='auto'  src="{{ image.image.url }}" alt="">
+                    <img src="{{ image.image.url }}" alt="">
                 </div>
             {% endfor %}
-            {% else %}
-                <h1 style="text-align:center;"> WELCOME TO INSTAGRAM!!!</h1>
-            {% endif %}
+      
 
         </div>
         <!-- side  bar div -->
