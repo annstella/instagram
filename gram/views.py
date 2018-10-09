@@ -67,7 +67,7 @@ def signup(request):
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignupForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'registration/registration_form.html', {'form': form})
 
 
 def activate(request, uidb64, token):
@@ -99,3 +99,54 @@ def new_image(request):
     else:
         image_form = NewImageForm()
     return render(request, 'new_image.html', {"image_form": image_form})
+
+
+@login_required(login_url='/accounts/login/')
+def profile(request, user_id):
+    """
+    Function that enables one to see their profile
+    """
+    title = "Profile"
+    images = Image.get_image_by_id(id= user_id).order_by('-posted_on')
+    profiles = User.objects.get(id=user_id)
+    users = User.objects.get(id=user_id)
+    return render(request, 'profile/profile.html',{'title':title, "images":images,"profiles":profiles})
+
+@login_required(login_url='/accounts/login/')
+def edit_profile(request):
+    """
+    Function that enables one to edit their profile information
+    """
+    current_user = request.user
+    profile = Profile.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+       
+            profile.save()
+        return redirect('profile')
+    else:
+        form = ProfileForm()
+    return render(request, 'profile/edit-profile.html', {"form": form,})
+    
+@login_required(login_url='/accounts/login/')
+def follow(request,user_id):
+    other_user = User.objects.get(id = user_id)
+    
+
+    return redirect('landing')
+
+
+@login_required(login_url='/accounts/login/')
+def search_user(request):
+    """
+    Function that searches for profiles based on the usernames
+    """
+    if 'username' in request.GET and request.GET["username"]:
+        name = request.GET.get("username")
+        searched_profiles = User.objects.filter(username__icontains=name)
+        message = f"{name}"
+        profiles = User.objects.all()
+        print(profiles)
+        return render(request, 'search.html', {"message":message, "usernames":searched_profiles, "profiles":profiles,})
