@@ -112,30 +112,23 @@ def profile(request, user_id):
     users = User.objects.get(id=user_id)
     return render(request, 'profile/profile.html',{'title':title, "images":images,"profiles":profiles})
 
-@login_required(login_url='/accounts/login/')
-def edit_profile(request):
-    """
-    Function that enables one to edit their profile information
-    """
-    current_user = request.user
-    profile = Profile.objects.get(user=request.user)
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            profile = form.save(commit=False)
+# @login_required(login_url='/accounts/login/')
+# def edit_profile(request):
+#     """
+#     Function that enables one to edit their profile information
+#     """
+#     current_user = request.user
+#     profile = Profile.objects.get(user=request.user)
+#     if request.method == 'POST':
+#         form = ProfileForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             profile = form.save(commit=False)
        
-            profile.save()
-        return redirect('profile')
-    else:
-        form = ProfileForm()
-    return render(request, 'profile/edit-profile.html', {"form": form,})
-    
-@login_required(login_url='/accounts/login/')
-def follow(request,user_id):
-    other_user = User.objects.get(id = user_id)
-    
-
-    return redirect('landing')
+#             profile.save()
+#         return redirect('profile')
+#     else:
+#         form = ProfileForm()
+#     return render(request, 'profile/edit-profile.html', {"form": form,})
 
 
 @login_required(login_url='/accounts/login/')

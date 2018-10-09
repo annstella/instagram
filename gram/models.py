@@ -61,6 +61,16 @@ class Image(models.Model):
     def save_comment(self):
         self.save()
 
+    @classmethod
+    def get_images(cls):
+                images = Image.objects.all()
+                return images
+
+    @classmethod
+    def get_image_by_id(cls, id):
+                image = Image.objects.filter(user_id=id).all()
+                return image
+
 
 class Comment(models.Model):
     text = models.CharField(max_length=200, blank=True)

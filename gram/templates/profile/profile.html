@@ -8,53 +8,6 @@
 
 {% block content %}
 <div class="container">
-   <div class="col-md-4" id="dp">
-        <img src="/media/images/wood.jpg" alt="wood">
-</div>
-  <ul class="list-inline">
-    
-     <li class="list-inline-item" id="name">
-        <span class="font-weight-bold">{{profiles.username}}</span>
-          </li>
-{% if profiles.username == user.username %}
-     <li class="list-inline-item">
-    <a href="/logout"><button>Log out</button></a>
-    </li>
-  {% else %}
-   {% if profiles in people %}
-     <li class="list-inline-item">
-    <a href="/unfollow/{{profiles.id}}"><button>Following</button></a>
-    </li>
-    {% else %}
-     <li class="list-inline-item">
-    <a href="/follow/{{profiles.id}}"><button>Follow</button></a>
-    </li>
-    {% endif %}
-</ul>
-{% endif %}
- <ul class="list-inline">
-          <li class="list-inline-item">
-              <span>{{images|length}} </span> posts
-          </li>
-          <li class="list-inline-item">
-              <span>{{follow}} </span> followers
-          </li>
-          <li class="list-inline-item">
-              <span>{{following}} </span> following
-          </li>
-</ul>
-<hr>
- {% if images %}
-{% for image in images %}
-<div class="col-md-4">
-<br>
-<br>
-<img src="{{image.post.url}}" class="img-responsive">
-</div>
-{% endfor%}
- {% else %}
-<p>You have no posts yet</p>
-
-{% endif %}
+  <p>hey</p>
 </div>
 {% endblock %}
