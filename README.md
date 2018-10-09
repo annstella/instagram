@@ -17,7 +17,7 @@ Install all the necessary requirements by running pip install -r requirements.tx
 * $ ./manager.py migrate
 * $./manager.py runserver
 
-As a user of the application I should be able to:
+### As a user of the application I should be able to:
 
 * Sign in to the application to start using.
 * Upload my pictures to the application.
