@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect , get_object_or_404
 from django.contrib.auth import login, authenticate
 from .forms import SignupForm
 from django.contrib.sites.shortcuts import get_current_site
@@ -70,21 +70,6 @@ def signup(request):
     return render(request, 'registration/registration_form.html', {'form': form})
 
 
-def activate(request, uidb64, token):
-    try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.save()
-        login(request, user)
-        # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
-    else:
-        return HttpResponse('Activation link is invalid!')
-
 @login_required(login_url='/accounts/login/')
 def new_image(request):
     current_user = request.user
@@ -102,33 +87,24 @@ def new_image(request):
 
 
 @login_required(login_url='/accounts/login/')
-def profile(request, user_id):
-    """
-    Function that enables one to see their profile
-    """
+def profile(request, user_username = None):
+    if user_username == None:
+        user = request.user
+    else:
+        user = get_object_or_404( User ,username = user_username)
+    
+    profile = Profile.get_user_profile( user )
     title = "Profile"
-    images = Image.get_image_by_id(id= user_id).order_by('-posted_on')
-    profiles = User.objects.get(id=user_id)
-    users = User.objects.get(id=user_id)
-    return render(request, 'profile/profile.html',{'title':title, "images":images,"profiles":profiles})
+    images = Image.get_image_by_id(user.id)
+    print(images)
 
-# @login_required(login_url='/accounts/login/')
-# def edit_profile(request):
-#     """
-#     Function that enables one to edit their profile information
-#     """
-#     current_user = request.user
-#     profile = Profile.objects.get(user=request.user)
-#     if request.method == 'POST':
-#         form = ProfileForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             profile = form.save(commit=False)
-       
-#             profile.save()
-#         return redirect('profile')
-#     else:
-#         form = ProfileForm()
-#     return render(request, 'profile/edit-profile.html', {"form": form,})
+    context = {
+        'title':title, 
+        "images":images,
+        "profile" : profile }
+        
+    return render(request, 'profile/profile.html',context)
+
 
 
 @login_required(login_url='/accounts/login/')

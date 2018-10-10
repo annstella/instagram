@@ -8,10 +8,10 @@
 <body>
         <nav class="navbar">
                 <section class="logo-section"><img class="logo" src="https://seeklogo.com/images/I/instagram-new-2016-glyph-logo-84CB825424-seeklogo.com.png"/>
-                  <div></div><img class="logoname" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png"/>
+                  <div></div><img class="logoname" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/300px-Instagram_logo.svg.png"/>
                 </section>
-                <form class="search-section">
-                  <input class="input-search" type="search" name="search" placeholder="Search"/>
+                <form class="search-section" role="search" action="{% url 'search_results'%}">
+                  <input class="input-search" type="search" name="username" placeholder="Search username"/>
                 </form>
 
                 <div class="col-sm-6 col-md-6">
@@ -44,7 +44,7 @@
       
                   {% endif %}
                 </div>
-                <section class="icons-section"><a class="fa fa-compass" href="#"></a><a class="fa fa-heart" href="#"></a><a class="fa fa-user" href="/user/1"></a></section>
+                <section class="icons-section"><a class="fa fa-compass" href="#"></a><a class="fa fa-heart" href="#"></a><a class="fa fa-user" href="/{{ request.user }}"></a></section>
               </nav>
 </body>
 </html>

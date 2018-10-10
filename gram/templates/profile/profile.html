@@ -1,13 +1,59 @@
-{%extends 'base.html' %}
-{% load static %}
-
-{% block styles%}
-{{block.super}}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}">
-{% endblock %}
+{%extends 'registration/base.html' %} 
+{% load bootstrap3 %}
+{% load static %} 
 
 {% block content %}
+{{block.super}}
 <div class="container">
-  <p>hey</p>
+    {% if profile %}
+        <div class="col-md-4" id="dp">
+            <img width="100px" height="100px"  src=" {{ profile.profile_pic.url }} " alt="wood">
+        </div>
+    {% endif %}
+
+    <ul class="list-inline">
+
+        <li class="list-inline-item" id="name">
+            <span>{{profiles.username}}</span>
+        </li>
+        {% if profiles.username == user.username %}
+        <li class="list-inline-item">
+            <a href="/logout"><button>Log out</button></a>
+        </li>
+        {% else %} {% if profiles in user %}
+        <li class="list-inline-item">
+            <a href="/unfollow/{{profiles.id}}"><button>Following</button></a>
+        </li>
+        {% else %}
+        <li class="list-inline-item">
+            <a href="/follow/{{profiles.id}}"><button>Follow</button></a>
+        </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+    <ul class="list-inline">
+        <li class="list-inline-item">
+            <span>{{images|length}} </span> posts
+        </li>
+        <li class="list-inline-item">
+            <span>{{follow}} </span> followers
+        </li>
+        <li class="list-inline-item">
+            <span>{{following}} </span> following
+        </li>
+    </ul>
+    <hr> 
+
+    {% if images %} 
+        {% for image in images %}
+        <div class="col-md-4">
+            <br>
+            <br>
+            <img src="{{image.post.url}}" class="img-responsive">
+        </div>
+        {% endfor%} 
+    {% else %} 
+        suck my d
+    {% endif %}
 </div>
 {% endblock %}

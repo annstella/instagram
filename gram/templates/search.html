@@ -3,11 +3,12 @@
 
 
 {% block styles%}
-{{block.super}}
-<link rel="stylesheet" href="{% static 'css/search.css' %}">
+
+<!-- <link rel="stylesheet" href="{% static 'css/search.css' %}"> -->
 {% endblock %}
 
 {% block content %}
+{{block.super}}
 <div class="container">
 
   <div class="row">
@@ -23,7 +24,7 @@
     <div class="container">
      <ul class="list-inline">
     <li class="list-inline-item">
-<a href="/user/{{user.id}}" class="others"><strong class="list-inline"><img src="/static/img/wood.jpg" alt="avatar" class="img-circle" id="each"> {{user.username}} </strong>
+<a href="/user/{{user.id}}" class="others"><strong class="list-inline"><img src="/static/img/wood.jpg"> {{user.username}} </strong>
 </a>
 </li>
  {% if user in people %}
