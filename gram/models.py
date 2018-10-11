@@ -9,8 +9,8 @@ from django.dispatch import receiver
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=500, default= ' this is dump bio ' )
-    profile_pic = models.ImageField(upload_to='profile/' , default = 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiuhMHirPndAhVFzBoKHe_bCkAQjRx6BAgBEAU&url=https%3A%2F%2Fpngtree.com%2Ffree-animals-png%2Fcat&psig=AOvVaw3U6emi1Hbgor9jd6QFdm0T&ust=1539174174989742' )
+    bio = models.TextField(max_length=50, default= ' this is dump bio ' )
+    profile_pic = models.ImageField(upload_to='profile/' , default = 'default.jpg' )
 
     def __str__(self):
        return self.user.username
