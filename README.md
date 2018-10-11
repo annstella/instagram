@@ -36,7 +36,7 @@ Install all the necessary requirements by running pip install -r requirements.tx
 
 ##### Deployment
 
-Link to a live site: 
+Link to a live site:https://instadif2.herokuapp.com/
 
 
 #### Known bugs
