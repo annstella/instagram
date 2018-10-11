@@ -110,7 +110,3 @@ class Follow(models.Model):
         )
         friend.follower.remove(new_follow)
 
-
-class NewsLetterRecipients(models.Model):
-    name = models.CharField(max_length = 30)
-    email = models.EmailField()
